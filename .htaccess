@@ -1,0 +1,18 @@
+# Remove .php extension from URLs
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Redirect to custom page if page is not found
+ErrorDocument 404 /404
+
+# Redirect unauthorized access to certain subfolders
+#RewriteCond %{REQUEST_URI} /(audio|assets|css)/ [NC]
+#RewriteRule ^ - [F,L]
+
+# Redirect if user tries to add .php to the page in the URL
+#RewriteCond %{THE_REQUEST} \.php
+#RewriteRule ^ - [R=404,L]
+
+#php_flag display_errors off
